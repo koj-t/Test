@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>game1</title>
+    </head>
+    <body>
+        <h1>game1</h1>
+        <p>Score: <span id="score"></span></p>
+        <input type="button" id="card0" value="?" onclick="flip(0);">
+        <input type="button" id="card1" value="?" onclick="flip(1);">
+        <input type="button" id="card2" value="?" onclick="flip(2);">
+        <input type="button" id="card3" value="?" onclick="flip(3);">
+        <script>
+            var cards=[],
+            CARD_NUM=4,
+            current,
+            openedcard;
+            var correctnum=0,
+            enableflip=true;
+
+
+            function flip(n){
+                if(!enableflip)return;
+                var card=document.getElementById('card'+n);
+                if(card.value!='?')return;
+                card.value=cards[n];
+                if(typeof current==='undefined'){
+                    openedcard=n;
+                    current=cards[n];
+                }else{
+                    judge(n);
+                    current=undefined;
+                    enableflip=true;
+                }
+            }
+
+            function judge(n){
+                if(current==cards[n]){
+                    correctnum++;
+                    if(correctnum==CARD_NUM/2){
+                        alert("score is ...");
+                    } 
+                }else{
+                    enableflip=false;
+                    setTimeout(function(){
+                    document.getElementById('card'+openedcard).value='?';
+                    document.getElementById('card'+n).value='?';
+                    },3000);
+                }
+            }
+
+            function initCards(){
+                var num,cardindex;
+                for(var i=0;i<CARD_NUM;i++){
+                    num=Math.floor(i/2);
+                    do{
+                        cardindex=Math.floor(Math.random()*CARD_NUM);
+                    }while(typeof cards[cardindex]!=='undefined')
+                    cards[cardindex]=num;
+                }
+                console.log(cards);
+            }
+            initCards();
+        </script>
+    </body>
+    </html>
