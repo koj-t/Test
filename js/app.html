@@ -1,45 +1,43 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>APP</title>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
-</head>
-<body>
-<script>
-    function a(url){
-        var tmp=".com";
-        var uu=url+tmp;
-        document.location=uu;
-        alert(uu);
-    }
+    <head>
+        <meta charset="UTF-8">
+        <title>APP</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+        <script type="text/javascript">
+            function a(url){
+                var tmp=".com";
+                var uu=url+tmp;
+                document.location=uu;
+                alert(uu);
+            }
 
-        
-    $(function() {
-        var l="\'http://google\'";
-        $('#kojima').append('<p><input type=\"button\" onclick=\"a('+l+');\" value=\"GoTO\"></p>');
+            $(function() {
+                var l="\'http://google\'";
+                $('#kojima').append('<p><input type=\"button\" onclick=\"a('+l+');\" value=\"GoTO\"></p>');
 
+                $('#load').click(function(){
+                    $("#show").load("load.html .headlinePic");
+                    //$("#show2").load("gaza.html .PhotosContainerMain img");
+                    
+                    //$("#show2").load("http://headlines.yahoo.co.jp/hl?a=20140806-00000000-mai-int .ynDetailText");
+                    //$("#show").load("load.html .headlinePic .photoCaption");
 
-        $('#load').click(function(){
-            //$("#show").load("load.html .headlinePic");
-            //$("#show").load("gaza.html .PhotosContainerMain img");
-            $("#show2").load("http://headlines.yahoo.co.jp/hl?a=20140806-00000000-mai-int .ynDetailText");
-            //$("#show").load("load.html .headlinePic .photoCaption");
+                    /*
+                    $.get("load.html" ,null,function(data,st){
+                    alert(st);
+                    $('#show').html(data);
+                    },"html");
+                     */
+                });
+            });
 
-            /*
-            $.get("load.html" ,null,function(data,st){
-                alert(st);
-                $('#show').html(data);
-                },"html");
-                */
-            alert("kk");
-        });
-
-    });
-</script>
-<div id="kojima"></div>
-<p id="load">load</p>
-<div id="show"></div>
-<div id="show2"></div>
-</body>
+        </script>
+    </head>
+    <body>
+        <div id="kojima"></div>
+        <p id="load">load</p>
+        <div id="show"></div>
+        <div id="show2"></div>
+    </body>
 </html>
